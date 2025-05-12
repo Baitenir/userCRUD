@@ -1,5 +1,6 @@
 package dao.impl;
 import dao.UserDao;
+import db.Database;
 import models.User;
 import java.util.List;
 
@@ -11,12 +12,15 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(Long id) {
-        return null;
+        return Database.users.stream()
+                .filter(user -> user.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return List.of();
+        return Database.users;
     }
 
     @Override
