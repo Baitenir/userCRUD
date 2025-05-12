@@ -2,10 +2,20 @@ package models;
 import enums.Gender;
 
 public class User {
-    private Long id;
+    private Long  id;
     private String name;
     private int age;
     private Gender gender;
+
+    public User() {
+    }
+
+    public User(Long id, String name, int age, Gender gender) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
 
     public Long getId() {
         return id;
@@ -19,7 +29,7 @@ public class User {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String  name) {
         this.name = name;
     }
 

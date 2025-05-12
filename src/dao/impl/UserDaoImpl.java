@@ -5,11 +5,12 @@ import models.User;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
+
     @Override
     public String addUser(User user) {
-        return "";
+        Database.users.add(user);
+        return "successfully added";
     }
-
     @Override
     public User getUserById(Long id) {
         return Database.users.stream()
@@ -17,7 +18,6 @@ public class UserDaoImpl implements UserDao {
                 .findFirst()
                 .orElse(null);
     }
-
     @Override
     public List<User> getAllUsers() {
         return Database.users;
