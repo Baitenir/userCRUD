@@ -24,12 +24,21 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User updateUser(User user) {
-        return null;
+    public User updateUser(Long id, User user) {
+        return Database.users.stream()
+                .filter(user1 -> user1.getId().equals(id))
+                .findFirst()
+                .map(user1 -> {
+                    user1.setName(user.getName());
+                    user1.setAge(user.getAge());
+                    return user1;
+                })
+                .orElse(null);
     }
 
     @Override
     public String deleteUser(Long id) {
-        return "";
+        boolean isDeleted = Database.users.removeIf(user -> user.getId().equals(id));
+        return isDeleted ? "successfully deleted" : "failed";
     }
 }
